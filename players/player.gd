@@ -1,2 +1,5 @@
 class_name Player
-extends Node
+extends KinematicBody2D
+
+
+export var input_suffix := "_p1"

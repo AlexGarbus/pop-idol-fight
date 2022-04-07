@@ -9,15 +9,45 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "EditorVCSInterface",
+"base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-"base": "Node",
+"base": "OnGround",
+"class": "Idle",
+"language": "GDScript",
+"path": "res://players/states/motion/on_ground/idle.gd"
+}, {
+"base": "PlayerState",
+"class": "Motion",
+"language": "GDScript",
+"path": "res://players/states/motion/motion.gd"
+}, {
+"base": "OnGround",
+"class": "Move",
+"language": "GDScript",
+"path": "res://players/states/motion/on_ground/move.gd"
+}, {
+"base": "Motion",
+"class": "OnGround",
+"language": "GDScript",
+"path": "res://players/states/motion/on_ground/on_ground.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://players/player.gd"
+}, {
+"base": "State",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://players/states/player_state.gd"
+}, {
+"base": "StateMachine",
+"class": "PlayerStateMachine",
+"language": "GDScript",
+"path": "res://players/player_state_machine.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -31,7 +61,13 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "GitAPI": "",
+"Idle": "",
+"Motion": "",
+"Move": "",
+"OnGround": "",
 "Player": "",
+"PlayerState": "",
+"PlayerStateMachine": "",
 "State": "",
 "StateMachine": ""
 }
