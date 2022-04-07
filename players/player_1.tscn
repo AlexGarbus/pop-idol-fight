@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://players/player.gd" type="Script" id=1]
 [ext_resource path="res://players/states/motion/on_ground/move.gd" type="Script" id=2]
 [ext_resource path="res://players/states/motion/on_ground/idle.gd" type="Script" id=3]
 [ext_resource path="res://players/player_state_machine.gd" type="Script" id=4]
+[ext_resource path="res://players/states/motion/in_air/jump.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -26,3 +27,7 @@ script = ExtResource( 3 )
 
 [node name="Move" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 2 )
+
+[node name="Jump" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 5 )
+jump_force = 200.0
