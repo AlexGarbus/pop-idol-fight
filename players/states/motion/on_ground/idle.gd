@@ -2,8 +2,8 @@ class_name Idle
 extends OnGround
 
 
-func _handle_input(event: InputEvent):
-	return ._handle_input(event)
+func _handle_input(event: InputEvent) -> void:
+	._handle_input(event)
 
 
 func _update(_delta: float) -> void:
