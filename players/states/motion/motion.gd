@@ -13,3 +13,8 @@ func _get_input_direction():
 			0
 	)
 	return input_direction
+
+
+func _update_look_direction(direction: Vector2) -> void:
+	if direction and _player.look_direction != direction:
+		_player.look_direction = direction

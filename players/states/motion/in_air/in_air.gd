@@ -9,6 +9,7 @@ onready var _gravity = ProjectSettings.get("physics/2d/default_gravity")
 
 func _physics_update(delta: float) -> void:
 	var input_direction = _get_input_direction()
+	_update_look_direction(input_direction)
 	
 	_velocity.x = input_direction.x * horizontal_move_speed
 	_velocity = _player.move_and_slide(_velocity, Vector2.UP)

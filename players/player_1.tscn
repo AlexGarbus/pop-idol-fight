@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://players/player.gd" type="Script" id=1]
 [ext_resource path="res://players/states/motion/on_ground/move.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://players/player_state_machine.gd" type="Script" id=4]
 [ext_resource path="res://players/states/motion/in_air/jump.gd" type="Script" id=5]
 [ext_resource path="res://players/states/motion/in_air/fall.gd" type="Script" id=6]
+[ext_resource path="res://players/weapon/weapon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://players/weapon/weapon_pivot.gd" type="Script" id=8]
+[ext_resource path="res://players/states/combat/melee.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -35,3 +38,17 @@ jump_force = 750.0
 
 [node name="Fall" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
+
+[node name="Melee" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 9 )
+
+[node name="WeaponPivot" type="Position2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="Offset" type="Position2D" parent="WeaponPivot"]
+position = Vector2( 24, 0 )
+
+[node name="Weapon" parent="WeaponPivot/Offset" instance=ExtResource( 7 )]
+
+[connection signal="state_changed" from="PlayerStateMachine" to="WeaponPivot/Offset/Weapon" method="_on_PlayerStateMachine_state_changed"]
+[connection signal="attack_finished" from="WeaponPivot/Offset/Weapon" to="PlayerStateMachine/Melee" method="_on_Weapon_attack_finished"]
