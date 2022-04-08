@@ -31,7 +31,7 @@ script = ExtResource( 2 )
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 5 )
-jump_force = 200.0
+jump_force = 750.0
 
 [node name="Fall" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
