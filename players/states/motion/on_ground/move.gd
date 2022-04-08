@@ -6,7 +6,6 @@ export var move_speed := 450.0
 
 
 func _enter() -> void:
-	_speed = 0.0
 	_velocity = Vector2.ZERO
 
 

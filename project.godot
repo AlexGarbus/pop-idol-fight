@@ -9,7 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "EditorVCSInterface",
+"base": "InAir",
+"class": "Fall",
+"language": "GDScript",
+"path": "res://players/states/motion/in_air/fall.gd"
+}, {
+"base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
@@ -20,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://players/states/motion/on_ground/idle.gd"
 }, {
 "base": "Motion",
+"class": "InAir",
+"language": "GDScript",
+"path": "res://players/states/motion/in_air/in_air.gd"
+}, {
+"base": "InAir",
 "class": "Jump",
 "language": "GDScript",
 "path": "res://players/states/motion/in_air/jump.gd"
@@ -65,8 +75,10 @@ _global_script_classes=[ {
 "path": "res://state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
+"Fall": "",
 "GitAPI": "",
 "Idle": "",
+"InAir": "",
 "Jump": "",
 "Motion": "",
 "Move": "",
