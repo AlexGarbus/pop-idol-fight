@@ -13,6 +13,8 @@ extents = Vector2( 32.25, 256 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 0, 504 )
+collision_layer = 2
+collision_mask = 3
 
 [node name="Polygon2D" type="Polygon2D" parent="Floor"]
 position = Vector2( 7.93798, 0 )
@@ -25,6 +27,8 @@ shape = SubResource( 1 )
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
 position = Vector2( 0, 504 )
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 position = Vector2( 512, -496 )
@@ -33,6 +37,8 @@ shape = SubResource( 1 )
 [node name="WallLeft" type="StaticBody2D" parent="."]
 position = Vector2( -64, 0 )
 scale = Vector2( 0.992248, 1 )
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
 position = Vector2( 32.25, 256 )
@@ -41,6 +47,8 @@ shape = SubResource( 2 )
 [node name="WallRight" type="StaticBody2D" parent="."]
 position = Vector2( -64, 0 )
 scale = Vector2( 0.992248, 1 )
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
 position = Vector2( 1128.75, 256 )
@@ -51,3 +59,4 @@ position = Vector2( 80, 480 )
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 944, 480 )
+collision_mask = 1
