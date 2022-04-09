@@ -8,6 +8,8 @@ func _handle_input(event: InputEvent) -> void:
 	._handle_input(event)
 
 
-func _physics_update(_delta: float) -> void:
+func _physics_update(delta: float) -> void:
 	if not _player.is_on_floor():
 		emit_signal("finished", "fall")
+	
+	._physics_update(delta)

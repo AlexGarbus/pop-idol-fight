@@ -5,10 +5,6 @@ extends OnGround
 export var move_speed := 450.0
 
 
-func _enter() -> void:
-	_velocity = Vector2.ZERO
-
-
 func _handle_input(event: InputEvent) -> void:
 	._handle_input(event)
 
@@ -20,6 +16,5 @@ func _physics_update(delta: float) -> void:
 	_update_look_direction(input_direction)
 	
 	_velocity = input_direction * move_speed
-	_velocity = _player.move_and_slide(_velocity, Vector2.UP)
-	
 	._physics_update(delta)
+	_velocity = _player.move_and_slide(_velocity, Vector2.UP)
