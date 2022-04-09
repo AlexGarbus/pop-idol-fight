@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://players/player.gd" type="Script" id=1]
 [ext_resource path="res://players/states/motion/on_ground/move.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://players/weapon/weapon.tscn" type="PackedScene" id=7]
 [ext_resource path="res://players/weapon/weapon_pivot.gd" type="Script" id=8]
 [ext_resource path="res://players/states/combat/melee.gd" type="Script" id=9]
+[ext_resource path="res://players/states/combat/shoot.gd" type="Script" id=10]
+[ext_resource path="res://players/projectile/projectile_spawner.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -42,6 +44,9 @@ script = ExtResource( 6 )
 [node name="Melee" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 9 )
 
+[node name="Shoot" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 10 )
+
 [node name="WeaponPivot" type="Position2D" parent="."]
 script = ExtResource( 8 )
 
@@ -50,5 +55,14 @@ position = Vector2( 24, 0 )
 
 [node name="Weapon" parent="WeaponPivot/Offset" instance=ExtResource( 7 )]
 
+[node name="ProjectileSpawner" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="CooldownTimer" type="Timer" parent="ProjectileSpawner"]
+one_shot = true
+
 [connection signal="state_changed" from="PlayerStateMachine" to="WeaponPivot/Offset/Weapon" method="_on_PlayerStateMachine_state_changed"]
+[connection signal="state_changed" from="PlayerStateMachine" to="ProjectileSpawner" method="_on_PlayerStateMachine_state_changed"]
 [connection signal="attack_finished" from="WeaponPivot/Offset/Weapon" to="PlayerStateMachine/Melee" method="_on_Weapon_attack_finished"]
+[connection signal="cooldown_finished" from="ProjectileSpawner" to="PlayerStateMachine/Shoot" method="_on_ProjectileSpawner_cooldown_finished"]
+[connection signal="timeout" from="ProjectileSpawner/CooldownTimer" to="ProjectileSpawner" method="_on_CooldownTimer_timeout"]

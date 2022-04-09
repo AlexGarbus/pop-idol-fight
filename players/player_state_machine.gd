@@ -2,12 +2,14 @@ class_name PlayerStateMachine
 extends StateMachine
 
 
+var _player: Player
+
 onready var _idle := $Idle
 onready var _move := $Move
 onready var _jump := $Jump
 onready var _fall := $Fall
 onready var _melee := $Melee
-onready var _player: Player
+onready var _shoot := $Shoot
 
 
 func _ready() -> void:
@@ -16,7 +18,8 @@ func _ready() -> void:
 		"move": _move,
 		"jump": _jump,
 		"fall": _fall,
-		"melee": _melee
+		"melee": _melee,
+		"shoot": _shoot,
 	}
 	
 	yield(owner, "ready")
@@ -25,16 +28,17 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("melee" + _player.input_suffix):
-		if _current_state in [_melee]:
-			return
+	if _is_change_state_input(event, "melee"):
 		_change_state("melee")
+		return
+	if _is_change_state_input(event, "shoot"):
+		_change_state("shoot")
 		return
 	
 	_current_state._handle_input(event)
 
 
-func _change_state(state_name: String):
+func _change_state(state_name: String) -> void:
 	if not _active:
 		return
 		
@@ -42,3 +46,10 @@ func _change_state(state_name: String):
 		_states_stack.push_front(_states_map[state_name])
 	
 	._change_state(state_name)
+
+
+func _is_change_state_input(event: InputEvent, action: String) -> bool:
+	if event.is_action_pressed(action + _player.input_suffix):
+		if not _current_state in [_melee, _shoot]:
+			return true
+	return false
