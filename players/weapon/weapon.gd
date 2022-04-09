@@ -22,9 +22,11 @@ func _change_state(next_state: int) -> void:
 		States.IDLE:
 			visible = false
 			monitoring = false
+			monitorable = false
 		States.ATTACKING:
 			visible = true
 			monitoring = true
+			monitorable = true
 			_attack_timer.start()
 			pass
 	
