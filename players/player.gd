@@ -3,12 +3,30 @@ extends KinematicBody2D
 
 
 signal direction_changed(direction)
+signal health_changed(health)
 
 export var input_suffix := "_p1"
+export var max_health := 100
+export var attack_damage := 5
 
 var look_direction := Vector2.RIGHT setget set_look_direction
+var health: int setget set_health
+
+
+func _ready() -> void:
+	set_health(max_health)
 
 
 func set_look_direction(value: Vector2) -> void:
 	look_direction = value
 	emit_signal("direction_changed", value)
+
+
+func set_health(value: int) -> void:
+	health = clamp(value, 0, max_health)
+	emit_signal("health_changed", health)
+
+
+func _on_AttackDetector_area_entered(area: Area2D) -> void:
+	if not is_a_parent_of(area):
+		set_health(health - attack_damage)

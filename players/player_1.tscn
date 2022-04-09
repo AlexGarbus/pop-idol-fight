@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://players/player.gd" type="Script" id=1]
 [ext_resource path="res://players/states/motion/on_ground/move.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
 
 [node name="Player1" type="KinematicBody2D"]
 collision_mask = 3
@@ -62,8 +65,17 @@ script = ExtResource( 11 )
 [node name="CooldownTimer" type="Timer" parent="ProjectileSpawner"]
 one_shot = true
 
+[node name="AttackDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
+modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 2 )
+
 [connection signal="state_changed" from="PlayerStateMachine" to="WeaponPivot/Offset/Weapon" method="_on_PlayerStateMachine_state_changed"]
 [connection signal="state_changed" from="PlayerStateMachine" to="ProjectileSpawner" method="_on_PlayerStateMachine_state_changed"]
 [connection signal="attack_finished" from="WeaponPivot/Offset/Weapon" to="PlayerStateMachine/Melee" method="_on_Weapon_attack_finished"]
 [connection signal="cooldown_finished" from="ProjectileSpawner" to="PlayerStateMachine/Shoot" method="_on_ProjectileSpawner_cooldown_finished"]
 [connection signal="timeout" from="ProjectileSpawner/CooldownTimer" to="ProjectileSpawner" method="_on_CooldownTimer_timeout"]
+[connection signal="area_entered" from="AttackDetector" to="." method="_on_AttackDetector_area_entered"]
