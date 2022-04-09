@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://players/player_2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://players/player_1.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 516, 8 )
+extents = Vector2( 512, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32.25, 256 )
 
 [node name="Fight" type="Node"]
 
@@ -12,11 +15,36 @@ extents = Vector2( 516, 8 )
 position = Vector2( 0, 504 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Floor"]
+position = Vector2( 7.93798, 0 )
+scale = Vector2( 0.992248, 1 )
 polygon = PoolVector2Array( -8, -8, 1024, -8, 1024, 8, -8, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 508, 0 )
+position = Vector2( 512, 0 )
 shape = SubResource( 1 )
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2( 0, 504 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2( 512, -496 )
+shape = SubResource( 1 )
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2( -64, 0 )
+scale = Vector2( 0.992248, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2( 32.25, 256 )
+shape = SubResource( 2 )
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2( -64, 0 )
+scale = Vector2( 0.992248, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2( 1128.75, 256 )
+shape = SubResource( 2 )
 
 [node name="Player1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 480 )
