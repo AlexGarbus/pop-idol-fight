@@ -2,6 +2,7 @@ class_name Player
 extends KinematicBody2D
 
 
+signal attacked(attacker)
 signal direction_changed(direction)
 signal health_changed(health)
 
@@ -30,3 +31,4 @@ func set_health(value: int) -> void:
 func _on_AttackDetector_area_entered(area: Area2D) -> void:
 	if not is_a_parent_of(area):
 		set_health(health - attack_damage)
+		emit_signal("attacked", area)

@@ -10,6 +10,7 @@ onready var _jump := $Jump
 onready var _fall := $Fall
 onready var _melee := $Melee
 onready var _shoot := $Shoot
+onready var _launch := $Launch
 
 
 func _ready() -> void:
@@ -20,6 +21,7 @@ func _ready() -> void:
 		"fall": _fall,
 		"melee": _melee,
 		"shoot": _shoot,
+		"launch": _launch,
 	}
 	
 	yield(owner, "ready")
@@ -42,7 +44,7 @@ func _change_state(state_name: String) -> void:
 	if not _active:
 		return
 		
-	if state_name in ["jump", "fall", "melee", "shoot"]:
+	if state_name in ["jump", "fall", "melee", "shoot", "launch"]:
 		_states_stack.push_front(_states_map[state_name])
 	
 	._change_state(state_name)
@@ -53,3 +55,8 @@ func _is_change_state_input(event: InputEvent, action: String) -> bool:
 		if not _current_state in [_melee, _shoot]:
 			return true
 	return false
+
+
+func _on_Player_attacked(attacker: Area2D) -> void:
+	_launch.launch_direction = (_player.global_position - attacker.global_position).normalized()
+	_change_state("launch")

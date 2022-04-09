@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://players/states/motion/in_air/jump.gd"
 }, {
+"base": "Motion",
+"class": "Launch",
+"language": "GDScript",
+"path": "res://players/states/motion/launch.gd"
+}, {
 "base": "PlayerState",
 "class": "Melee",
 "language": "GDScript",
@@ -110,6 +115,7 @@ _global_script_class_icons={
 "Idle": "",
 "InAir": "",
 "Jump": "",
+"Launch": "",
 "Melee": "",
 "Motion": "",
 "Move": "",
