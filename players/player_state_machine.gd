@@ -42,7 +42,7 @@ func _change_state(state_name: String) -> void:
 	if not _active:
 		return
 		
-	if state_name in ["jump", "fall", "melee"]:
+	if state_name in ["jump", "fall", "melee", "shoot"]:
 		_states_stack.push_front(_states_map[state_name])
 	
 	._change_state(state_name)
