@@ -6,4 +6,9 @@ onready var _hud := $HUD
 
 
 func _ready() -> void:
+	get_tree().paused = true
 	_hud.initialize(_player1, _player2)
+
+
+func _on_Instructions_hidden() -> void:
+	get_tree().paused = false
