@@ -138,6 +138,11 @@ config/name="Pop Idol Fight"
 run/main_scene="res://fight/fight.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
