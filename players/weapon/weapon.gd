@@ -23,6 +23,7 @@ func _change_state(next_state: int) -> void:
 			visible = false
 			monitoring = false
 			monitorable = false
+			_attack_timer.stop()
 		States.ATTACKING:
 			visible = true
 			monitoring = true
@@ -41,3 +42,5 @@ func _on_AttackTimer_timeout() -> void:
 func _on_PlayerStateMachine_state_changed(current_state: State) -> void:
 	if current_state.name == "Melee":
 		_change_state(States.ATTACKING)
+	elif _state == States.ATTACKING:
+		_change_state(States.IDLE)

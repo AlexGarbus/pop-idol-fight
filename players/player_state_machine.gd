@@ -43,7 +43,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _change_state(state_name: String) -> void:
 	if not _active:
 		return
-		
+	
+	if state_name == "launch" and _current_state in [_melee, _shoot]:
+		_states_stack.pop_front()
+	
 	if state_name in ["jump", "fall", "melee", "shoot", "launch"]:
 		_states_stack.push_front(_states_map[state_name])
 	

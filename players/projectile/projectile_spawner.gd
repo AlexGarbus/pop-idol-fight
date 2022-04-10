@@ -31,3 +31,5 @@ func _on_CooldownTimer_timeout() -> void:
 func _on_PlayerStateMachine_state_changed(current_state: State) -> void:
 	if current_state.name == "Shoot":
 		_spawn()
+	elif not _cooldown_timer.is_stopped():
+		_cooldown_timer.stop()
