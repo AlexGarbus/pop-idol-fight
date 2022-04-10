@@ -45,6 +45,7 @@ func _change_state(state_name: String) -> void:
 		return
 	
 	if state_name == "launch" and _current_state in [_melee, _shoot]:
+		_current_state._exit()
 		_states_stack.pop_front()
 	
 	if state_name in ["jump", "fall", "melee", "shoot", "launch"]:
