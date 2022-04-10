@@ -61,5 +61,7 @@ func _is_change_state_input(event: InputEvent, action: String) -> bool:
 
 
 func _on_Player_attacked(attacker: Area2D) -> void:
-	_launch.launch_direction = (_player.global_position - attacker.global_position).normalized()
+	var launch_direction = (_player.global_position - attacker.global_position).normalized()
+	var time_interpolant = 1.0 - float(_player.health) / float(_player.max_health)
+	_launch.initialize(launch_direction, time_interpolant)
 	_change_state("launch")
