@@ -23,6 +23,7 @@ extents = Vector2( 8, 8 )
 [node name="Player1" type="KinematicBody2D"]
 collision_mask = 3
 script = ExtResource( 1 )
+player_name = "Player 1"
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )

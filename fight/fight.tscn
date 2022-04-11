@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://players/player_2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://players/player_1.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://fight/fight.gd" type="Script" id=4]
 [ext_resource path="res://user_interface/instructions/instructions.tscn" type="PackedScene" id=5]
 [ext_resource path="res://user_interface/countdown/countdown.tscn" type="PackedScene" id=6]
+[ext_resource path="res://user_interface/winner_display/winner_display.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 8 )
@@ -65,17 +66,26 @@ position = Vector2( 80, 480 )
 [node name="Player2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 944, 480 )
 collision_mask = 1
+player_name = "Player"
 
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+[node name="OverlayLayer" type="CanvasLayer" parent="."]
 
-[node name="Countdown" parent="." instance=ExtResource( 6 )]
+[node name="WinnerDisplay" parent="OverlayLayer" instance=ExtResource( 7 )]
+visible = false
 
-[node name="Instructions" parent="." instance=ExtResource( 5 )]
+[node name="Countdown" parent="OverlayLayer" instance=ExtResource( 6 )]
+
+[node name="HUD" parent="OverlayLayer" instance=ExtResource( 3 )]
+
+[node name="InstructionsLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Instructions" parent="InstructionsLayer" instance=ExtResource( 5 )]
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
-[connection signal="finished" from="Countdown" to="." method="_on_Countdown_finished"]
-[connection signal="hidden" from="Instructions" to="." method="_on_Instructions_hidden"]
+[connection signal="finished" from="OverlayLayer/Countdown" to="." method="_on_Countdown_finished"]
+[connection signal="hidden" from="InstructionsLayer/Instructions" to="." method="_on_Instructions_hidden"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

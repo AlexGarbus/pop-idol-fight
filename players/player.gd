@@ -6,6 +6,7 @@ signal attacked(attacker)
 signal direction_changed(direction)
 signal health_changed(health)
 
+export var player_name := "Player"
 export var input_suffix := "_p1"
 export var max_health := 100
 export var attack_damage := 5
