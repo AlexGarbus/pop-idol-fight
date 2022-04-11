@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://players/player.gd" type="Script" id=1]
 [ext_resource path="res://players/states/motion/on_ground/move.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://players/states/combat/shoot.gd" type="Script" id=10]
 [ext_resource path="res://players/projectile/projectile_spawner.gd" type="Script" id=11]
 [ext_resource path="res://players/states/motion/launch.gd" type="Script" id=12]
+[ext_resource path="res://players/states/motion/death.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -54,6 +55,9 @@ script = ExtResource( 10 )
 
 [node name="Launch" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 12 )
+
+[node name="Death" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 13 )
 
 [node name="WeaponPivot" type="Position2D" parent="."]
 script = ExtResource( 8 )

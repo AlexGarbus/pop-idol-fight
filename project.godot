@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Motion",
+"class": "Death",
+"language": "GDScript",
+"path": "res://players/states/motion/death.gd"
+}, {
 "base": "InAir",
 "class": "Fall",
 "language": "GDScript",
@@ -110,6 +115,7 @@ _global_script_classes=[ {
 "path": "res://players/weapon/weapon_pivot.gd"
 } ]
 _global_script_class_icons={
+"Death": "",
 "Fall": "",
 "GitAPI": "",
 "Idle": "",

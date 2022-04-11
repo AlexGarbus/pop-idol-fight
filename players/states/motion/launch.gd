@@ -26,4 +26,7 @@ func initialize(direction: Vector2, time_interpolant: float):
 
 
 func _on_LaunchTimer_timeout() -> void:
-	emit_signal("finished", "previous")
+	if _player.health == 0:
+		emit_signal("finished", "death")
+	else:
+		emit_signal("finished", "previous")

@@ -11,6 +11,7 @@ onready var _fall := $Fall
 onready var _melee := $Melee
 onready var _shoot := $Shoot
 onready var _launch := $Launch
+onready var _death := $Death
 
 
 func _ready() -> void:
@@ -22,6 +23,7 @@ func _ready() -> void:
 		"melee": _melee,
 		"shoot": _shoot,
 		"launch": _launch,
+		"death": _death,
 	}
 	
 	yield(owner, "ready")

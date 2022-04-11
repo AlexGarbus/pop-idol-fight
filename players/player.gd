@@ -12,6 +12,9 @@ export var attack_damage := 5
 
 var look_direction := Vector2.RIGHT setget set_look_direction
 var health: int setget set_health
+var fighting := true setget set_fighting
+
+onready var _attack_detector := $AttackDetector
 
 
 func _ready() -> void:
@@ -26,6 +29,11 @@ func set_look_direction(value: Vector2) -> void:
 func set_health(value: int) -> void:
 	health = clamp(value, 0, max_health)
 	emit_signal("health_changed", health)
+
+
+func set_fighting(value: bool) -> void:
+	set_process_input(value)
+	_attack_detector.monitoring = value
 
 
 func _on_AttackDetector_area_entered(area: Area2D) -> void:
