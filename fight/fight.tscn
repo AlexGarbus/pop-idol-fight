@@ -61,10 +61,10 @@ position = Vector2( 1128.75, 256 )
 shape = SubResource( 2 )
 
 [node name="Player1" parent="." instance=ExtResource( 2 )]
-position = Vector2( 80, 480 )
+position = Vector2( 80, 468 )
 
 [node name="Player2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 944, 480 )
+position = Vector2( 944, 468 )
 collision_mask = 1
 
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
