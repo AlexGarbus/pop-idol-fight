@@ -14,6 +14,11 @@ onready var _launch_timer := get_node("../../LaunchTimer")
 func _enter() -> void:
 	_launch_timer.start()
 	_velocity = launch_direction * launch_speed
+	
+	if _player.look_direction.x < 0:
+		_player.play_animation("jump_left")
+	else:
+		_player.play_animation("jump_right")
 
 
 func _physics_update(_delta: float) -> void:

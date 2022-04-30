@@ -21,6 +21,7 @@ func _ready() -> void:
 		if err:
 			printerr(err)
 	
+	yield(owner, "ready")
 	initialize(start_state)
 
 

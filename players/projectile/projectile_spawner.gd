@@ -22,6 +22,7 @@ func _spawn() -> void:
 	add_child(new_projectile)
 	new_projectile.position = global_position
 	new_projectile.direction = _player.look_direction
+	new_projectile.scale.x = ceil(_player.look_direction.x)
 
 
 func _on_CooldownTimer_timeout() -> void:

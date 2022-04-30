@@ -9,6 +9,13 @@ func _handle_input(event: InputEvent) -> void:
 	._handle_input(event)
 
 
+func _update(delta: float) -> void:
+	if _player.look_direction.x < 0:
+		_player.play_animation("move_left")
+	else:
+		_player.play_animation("move_right")
+
+
 func _physics_update(delta: float) -> void:
 	var input_direction = _get_input_direction()
 	if not input_direction:

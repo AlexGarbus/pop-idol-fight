@@ -16,6 +16,7 @@ var health: int setget set_health
 var fighting := true setget set_fighting
 
 onready var _attack_detector := $AttackDetector
+onready var _sprite := $SpritePivot/AnimatedSprite
 
 
 func _ready() -> void:
@@ -35,6 +36,10 @@ func set_health(value: int) -> void:
 func set_fighting(value: bool) -> void:
 	set_process_input(value)
 	_attack_detector.monitoring = value
+
+
+func play_animation(value: String) -> void:
+	_sprite.play(value)
 
 
 func _on_AttackDetector_area_entered(area: Area2D) -> void:

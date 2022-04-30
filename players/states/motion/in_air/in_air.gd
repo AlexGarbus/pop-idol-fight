@@ -5,6 +5,13 @@ extends Motion
 export var horizontal_move_speed := 450.0
 
 
+func _update(_delta: float) -> void:
+	if _player.look_direction.x < 0:
+		_player.play_animation("jump_left")
+	else:
+		_player.play_animation("jump_right")
+
+
 func _physics_update(delta: float) -> void:
 	var input_direction = _get_input_direction()
 	_update_look_direction(input_direction)
