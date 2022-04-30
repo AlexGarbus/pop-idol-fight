@@ -9,7 +9,7 @@
 [ext_resource path="res://user_interface/winner_display/winner_display.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 512, 8 )
+extents = Vector2( 512, 52 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32.25, 256 )
@@ -25,10 +25,10 @@ collision_mask = 3
 [node name="Polygon2D" type="Polygon2D" parent="Floor"]
 position = Vector2( 7.93798, 0 )
 scale = Vector2( 0.992248, 1 )
-polygon = PoolVector2Array( -8, -8, 1024, -8, 1024, 8, -8, 8 )
+polygon = PoolVector2Array( -8, -8, 1024, -8, 1024, 96, -8, 96 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 512, 0 )
+position = Vector2( 512, 44 )
 shape = SubResource( 1 )
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
