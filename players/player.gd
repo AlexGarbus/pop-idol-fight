@@ -10,6 +10,7 @@ export var player_name := "Player"
 export var input_suffix := "_p1"
 export var max_health := 100
 export var attack_damage := 5
+export var start_direction := Vector2.RIGHT
 
 var look_direction := Vector2.RIGHT setget set_look_direction
 var health: int setget set_health
@@ -20,6 +21,7 @@ onready var _sprite := $SpritePivot/AnimatedSprite
 
 
 func _ready() -> void:
+	set_look_direction(start_direction)
 	set_health(max_health)
 
 
